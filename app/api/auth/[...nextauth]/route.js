@@ -24,7 +24,7 @@ const authOptions ={
                 password:{label:"Password",type:"password"}
             },
             async authorize(credentials){
-                connectDB()
+                await connectDB()
 
                 const user = await User.findOne({username: credentials.username});
                 if(!user){
