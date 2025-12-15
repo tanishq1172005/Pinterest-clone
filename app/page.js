@@ -16,7 +16,7 @@ function HomeContent() {
   const search = searchParams.get("search")
 
   const getPins = async()=>{
-    const url =search?`http://localhost:3000/api/pin?search=${search}`:"http://localhost:3000/api/pin"
+    const url =search?`/api/pin?search=${search}`:"/api/pin"
     const response = await axios.get(url)
      setPins(response.data.pins)
   }
