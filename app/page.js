@@ -5,10 +5,10 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
 
-export default function Home() {
+function HomeContent() {
   const {data:session} = useSession()
   const [pins,setPins] = useState([])
 
@@ -58,5 +58,17 @@ export default function Home() {
         </h3>
       )}
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-screen">
+        <ClipLoader color="#ef4444" size={120} />
+      </div>
+    }>
+      <HomeContent />
+    </Suspense>
   );
 }
